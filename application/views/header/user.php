@@ -14,6 +14,11 @@
   <link rel="stylesheet" href="<?=base_url('assets/mdb/css/mdb.min.css')?>"/>
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="<?=base_url('assets/mdb/css/style.min.css')?>"/>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="<?=base_url('assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css')?>" />
+
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" href="<?=base_url('assets/bootstrap/css/heroic-features.css')?>">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
