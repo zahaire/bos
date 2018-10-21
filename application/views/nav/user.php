@@ -72,20 +72,77 @@
 				</div>
 				<div class="modal-body mx-3">
 					<div class="md-form mb-5">
-						<i class="fa fa-envelope prefix grey-text"></i>
-						<input type="email" id="defaultForm-email" class="form-control validate">
-						<label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+						<input type="text" id="username" class="form-control validate">
+						<label for="defaultForm-username">Username</label>
 					</div>
 
 					<div class="md-form mb-4">
-						<i class="fa fa-lock prefix grey-text"></i>
-						<input type="password" id="defaultForm-pass" class="form-control validate">
-						<label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+						<input type="email" id="email" class="form-control validate">
+						<label for="defaultForm-email">Email Address</label>
 					</div>
+
+          <div class="md-form mb-5">
+						<input type="password" id="password" class="form-control validate">
+						<label for="defaultForm-password">Password</label>
+					</div>
+
+           <div class="md-form mb-6">
+						<input type="text" id="fname" class="form-control validate">
+						<label for="defaultForm-fname">First Name</label>
+					</div>
+
+            <div class="md-form mb-7">
+						<input type="text" id="mname" class="form-control validate">
+						<label for="defaultForm-mname">Middle Name</label>
+					</div>
+
+           <div class="md-form mb-8">
+						<input type="text" id="lname" class="form-control validate">
+						<label for="defaultForm-lname">Last Name</label>
+					</div>
+
+           <div class="md-form mb-9">
+           <label>Organization/School</label>
+           <br>
+           <br>
+    <select class="browser-default custom-select mb-4">
+        <option value="" disabled>Choose option</option>
+        <option value="2">Not Applicable</option>
+        <option value="3">FEU Tech</option>
+        <option value="4">University of Santo Thomas</option>
+        <option value="5">University of the East</option>
+        <option value="6">FEU Manila</option>
+        <option value="7">National University</option>
+    </select>
+					</div>
+
+      <div class="md-form mb-10">
+           <label>Year Level</label>
+           <br>
+           <br>
+    <select class="browser-default custom-select mb-4">
+        <option value="" disabled>Choose option</option>
+        <option value="2">1st Year</option>
+        <option value="3">2nd Year</option>
+        <option value="4">3rd Year</option>
+        <option value="5">4th Year</option>
+        <option value="6">5th Year</option>
+    </select>
+					</div>
+
+               <div class="md-form mb-10">
+            
+						<input type="text" id="course" class="form-control validate">
+						<label for="defaultForm-course">Course</label>
+    </select>
+					</div>
+
+
 				</div>
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Login</button>
+					<button type="button" class="btn btn-primary">Register</button>
 				</div>
 			</div>
 		</div>
