@@ -19,9 +19,6 @@
 <script src="<?=base_url('assets/mdb/js/jquery-3.3.1.min.js')?>"></script>
 <!-- Bootstrap tooltips -->
 <script src="<?=base_url('assets/mdb/js/popper.min.js')?>"></script>
-<!-- Bootstrap core JavaScript -->
-<script src="<?=base_url('assets/mdb/js/bootstrap.min.js')?>"></script>
-<!-- MDB core JavaScript -->
 <script src="<?=base_url('assets/mdb/js/mdb.min.js')?>"></script>
 <!-- Initializations -->
 <script type="text/javascript">

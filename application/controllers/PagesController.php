@@ -14,18 +14,17 @@ class PagesController extends CI_Controller {
     }
 
     public function index() {
+        $this->load->view('header/user.php');
         $this->load->view('nav/user.php');
-        $this->load->view('header/index.php');
+        $this->load->view('body/user/home.php');
         $this->load->view('footer/user.php');
-
     }
-    
+
     public function product() {
         $this->load->view('header/customer.php');
         $this->load->view('nav/customer.php');
         $this->load->view('body/customer/home.php');
         $this->load->view('footer/customer.php');
-    
     }
 
 }
