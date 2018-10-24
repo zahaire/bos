@@ -20,6 +20,16 @@ class Home extends CI_Controller {
         $this->load->view('footer/user.php');
 
     }
+
+    public function admin() {
+        $this->load->view('header/admin.php');
+        $this->load->view('nav/admin.php');
+        $this->load->view('body/admin/home.php');
+        $this->load->view('footer/admin.php');
+
+    }
+
+
     
  
 
