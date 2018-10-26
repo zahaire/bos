@@ -12,13 +12,14 @@
 <!-- SCRIPTS -->
 <script src="<?=base_url('assets/mdb/js/jquery-3.3.1.min.js')?>"></script>
 <script src="<?=base_url('assets/mdb/js/popper.min.js')?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.10/dist/sweetalert2.all.min.js"></script>
 <script src="<?=base_url('assets/mdb/js/bootstrap.min.js')?>"></script>
 <script src="<?=base_url('assets/mdb/js/mdb.min.js')?>"></script>
 
 <!-- Initializations -->
 <script type="text/javascript">
 	// Animations initialization
-	const base_url = <?= base_url(); ?>
+	const base_url = "<?= base_url(); ?>";
 	new WOW().init();
 
 </script>

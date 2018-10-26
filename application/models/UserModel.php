@@ -11,11 +11,26 @@ class UserModel extends CI_Model {
         return $this->db->insert('user', $user);
     }
 
-    // public function getAll($columns = [], $constraints, $table)
-    // {
-    //     $query = $this->db->select($columns)
-    //         ->where($constraints)
-    //         ->get($table);
-    //     return $query->result();
-    // }
+    public function get($id = NULL)
+    {
+        if ($id !== NULL) {
+            $query = $this->db->get('user');
+            return $query->result();
+        } else {
+            $query = $this->db->get('user', ['id' => $id]);
+            return $query->row();
+        }
+    }
+
+    public function update($id, $values = []){
+        return $this->db->where('id', $id)
+            ->update('user', $values);
+    }
+
+    public function get_columns_by($columns = [], $constraints = [])
+    {
+        $query = $this->db->select($columns)
+            ->get('user', $constraints);
+        return $query->row();
+    }
 }

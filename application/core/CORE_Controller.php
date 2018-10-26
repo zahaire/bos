@@ -8,7 +8,6 @@ class CORE_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->user();
 
         $this->data['title'] = 'Better Online Survey';
         $this->data['response'] = NULL;
@@ -20,18 +19,10 @@ class CORE_Controller extends CI_Controller
 
     #region User Sessions
 
-    public function user()
+    public function allowOnly($allowed = [GUEST])
     {
-        if ($this->session->userdata('logged_in') !== null) {
-            return $this->session->userdata('logged_in');
-        } else {
-            return (object) ['access_lvl' => GUEST];
-        }
-    }
-
-    protected function allowOnly($allowed = [GUEST])
-    {
-        if (in_array($this->user()->access_lvl, $allowed)) {
+        $access = $this->session->current_user->access ?? GUEST;
+        if (in_array($access, $allowed)) {
             return true;
         } else {
             $this->point();
@@ -41,12 +32,12 @@ class CORE_Controller extends CI_Controller
 
     public function point()
     {
-        $user_lvl = func_num_args() > 0 ? func_get_arg(0) : $this->user()->access_lvl;
+        $user_lvl = func_num_args() > 0 ? func_get_arg(0) : $this->session->current_user->access;
         // var_dump($this->user());
 
         switch ($user_lvl) {
             case CUSTOMER:
-                redirect('pages/customer');
+                redirect('pages/user');
                 break;
             case ADMIN:
                 redirect('pages/admin');
@@ -95,6 +86,7 @@ class CORE_Controller extends CI_Controller
 
     #endregion
 
+    #region Page Loaders
     protected function loadGuest($page)
     {
         $this->data['userHeaders'] = [
@@ -107,8 +99,25 @@ class CORE_Controller extends CI_Controller
         $this->load->view('header', $this->data);
         $this->load->view('nav/guest');
         $this->load->view($page, $this->data);
-        $this->load->view('footer');
+        $this->load->view('footer', $this->data);
     }
+
+    protected function loadUser($page)
+    {
+        $this->data['userHeaders'] = [
+            '<link rel="stylesheet" href="' . base_url('assets/custom/css/dashboard.css') . '"/>'
+        ];
+        $this->data['userFooters'] = [
+            
+        ];
+        // var_dump($this->data);
+        $this->load->view('header', $this->data);
+        $this->load->view('nav/customer');
+        $this->load->view($page, $this->data);
+        $this->load->view('footer', $this->data);
+    }
+    
+    #endregion
 
     public function notifyUser($data)
     {
