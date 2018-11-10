@@ -29,6 +29,8 @@ class UserModel extends CI_Model {
 
     public function get_columns_by($columns = [], $constraints = [])
     {
+        var_dump($columns);
+        var_dump($constraints);
         $query = $this->db->select($columns)
             ->get('user', $constraints);
         return $query->row();

@@ -1,6 +1,9 @@
 <div class="container">
-	<div class="row my-5 pb-5">
-		<div class="col-12">
+	<div class="row">
+		<div class="col-3 bg-light p-5 sidebar">
+
+		</div>
+		<div class="col-9 my-5 px-lg-5">
 			<div class="card">
 				<div class="card-header">
 					Get started

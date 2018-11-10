@@ -20,7 +20,7 @@ class Users extends CORE_Controller
 			[
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required|valid_email|trim|is_unique[users.email]'
+				'rules' => 'required|valid_email|trim|is_unique[user.email]'
 			],
 			[
 				'field' => 'password',
@@ -55,7 +55,7 @@ class Users extends CORE_Controller
             [
 				'field' => 'bdate',
 				'label' => 'Birth Date',
-				'rules' => 'required|trim|in_list[female,male]'
+				'rules' => 'required'
 			],
             [
 				'field' => 'student_id',
@@ -88,10 +88,38 @@ class Users extends CORE_Controller
 				'rules' => 'required|in_list[geo_cities.id]'
 			],
 		];
+
+		$user = [
+			'username' => trim($this->input->post('username')),
+			'email' => $this->input->post('email'),
+			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+			'first_name' => $this->input->post('fname'),
+			'last_name' => $this->input->post('lname'),
+			'middle_name' => $this->input->post('mname'),
+			'sex' => $this->input->post('sex'),
+			'birth_date' => $this->input->post('bdate'),
+			
+			'student_id' => $this->input->post('student_id'),
+			'organization_id' => $this->input->post('org'),
+			'program_id' => $this->input->post('program'),
+			'yr_lvl_id' => $this->input->post('yr'),
+			'home_city_id' => $this->input->post('city'),
+			'home_region_id' => $this->input->post('region'),
+			'current_city_id' => $this->input->post('city'),
+			'current_region_id' => $this->input->post('region'),
+			
+			'create_time' => currentTimestamp(),
+			'status' => '0',
+			'access' => '1',
+		];
+
+		var_dump($user);
+
 		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE) {
-            parent::point('pages/register');
+			var_dump(validation_errors());
+			// parent::point('pages/register');
 		} else {
             $user = [
                 'username' => trim($this->input->post('username')),
@@ -115,14 +143,16 @@ class Users extends CORE_Controller
                 'create_time' => currentTimestamp(),
                 'status' => '0',
                 'access' => '1',
-            ];
+			];
+			
+			$insertResult = $this->Users->add($user);
 
-            if ($this->User->add($user) === FALSE){
-                $this->session->set_flashdata('error', 'Database error.');
-                parent::point('pages/register');   
+            if ($insertResult === FALSE){
+                // $this->session->set_flashdata('error', 'Database error.');
+				// parent::point('pages/register');
             } else {
-                parent::point('pages/index');
-            }
+				// parent::point('pages/index');
+			}
 		}
     }
 
@@ -146,11 +176,12 @@ class Users extends CORE_Controller
 		if ($this->form_validation->run() === FALSE) {
             parent::point('pages/register');
 		} else {
-
-            $user = $this->User->get_columns_by(
+				$user = $this->Users->get_columns_by(
                 ['id', 'password', 'email', 'first_name', 'middle_name', 'last_name', 'access'],
                 ['username' => trim($this->input->post('username'))]
-            );
+			);
+			
+			var_dump($user); die;
             
             if ($user === NULL && password_verify(trim($this->input->post('password')), $user->password)){
                 $this->session->set_flashdata('error', 'Invalid username/password.');
@@ -167,7 +198,7 @@ class Users extends CORE_Controller
 
 				$this->session->set_userdata('current_user', $session);
 				// var_dump($this->session->current_user); die;
-				$this->User->update($user->id, ['last_login' => currentTimestamp()]);
+				$this->Users->update($user->id, ['last_login' => currentTimestamp()]);
 				parent::point();
 				
             }

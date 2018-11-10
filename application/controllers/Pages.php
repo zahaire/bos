@@ -43,7 +43,7 @@ class Pages extends CORE_Controller
     {
         parent::allowOnly([CUSTOMER]);
         parent::setTitle('Dashboard');
-        // parent::customHeader('<link rel="stylesheet" href="' . base_url('assets/custom/css/register.css') . '"/>');
+        parent::customHeader('<link rel="stylesheet" href="' . base_url('assets/custom/css/dashboard.css') . '"/>');
         parent::loadUser('body/customer/dashboard');
     }
 

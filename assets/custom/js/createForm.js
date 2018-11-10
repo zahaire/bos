@@ -10,6 +10,7 @@ $(document).ready(function () {
 	let optionStorage = [];
 	// #endregion
 
+	// initialize first card
 	cloneQuestionCard();
 
 	function cloneQuestionCard() {
@@ -18,6 +19,8 @@ $(document).ready(function () {
 		questionCardClone.find('.question').attr('name', 'question[' + questionNumber + ']');
 		questionCardClone.find('.additional').attr('name', 'additional[' + questionNumber + ']');
 		questionCardClone.find('.field_type').attr('name', 'field_type[' + questionNumber + ']');
+		questionCardClone.find('.require').attr('name', 'require[' + questionNumber + ']').attr('id', 'require[' + questionNumber + ']');
+		questionCardClone.find('.require').siblings('label').attr('for', 'require[' + questionNumber + ']');
 
 		questionCardClone.insertBefore(controlsContainer);
 	}
@@ -100,7 +103,25 @@ $(document).ready(function () {
 		$.each($("#questions-container :input").serializeArray(), function (i, field) {
 			values[field.name] = field.value;
 		});
-		console.log(values);
+
+		$.post(
+				base_url + 'surveys/save',
+				values,
+				(data) => {
+					console.log(data);
+				},
+				'json'
+			)
+			.done((data) => {
+				swal({
+					title: 'Success!',
+					text: "Your questionnaire has been saved!",
+					type: 'success',
+				}).then((result) => {
+					window.location.replace = base_url + 'pages/index';
+				})
+			});
+		// console.log(values);
 	});
 
 	// #endregion
